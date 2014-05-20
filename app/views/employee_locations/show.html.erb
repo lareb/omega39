@@ -1,0 +1,28 @@
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+
+<script type="text/javascript">
+
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": "<%= @employee_location.latitude %>",
+        "lng": "<%= @employee_location.longitude %>",
+        "zoom": 12,
+        "picture": {
+          "url": "/assets/map-marker.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "<%= @employee.name%> (<%= @employee.mobile_number%>)<br/>Position on - <%= @employee_location.position_on.strftime("%d %b %Y %I:%M:%S %p")%>"
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(15);
+  });
+
+</script>

@@ -1,0 +1,15 @@
+<h1><%= @employee.name %>'s Location History</h1>
+
+<table>
+  <tr>
+    <th>Location at</th>
+    <th>Map View</th>
+  </tr>
+
+<% @employee_locations.each do |employee_location| %>
+  <tr>
+    <td><%= employee_location.position_on.strftime("%d %b %Y %I:%M:%S %p") %></td>
+    <td><%= link_to "Show on Map", employee_employee_location_path(@employee, employee_location) %></td>
+  </tr>
+<% end %>
+</table>

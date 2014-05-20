@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Signin to Tracker</h1>
+</div>
+<div class="row">
+  <div class="span6 offset3">
+    <h4 class="widget-header"><i class="icon-lock"></i> Signin to Bootbusiness</h4>
+    <div class="widget-body">
+      <div class="center-align">
+        <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name),  :html => {class: 'form-horizontal form-signin-signup'} ) do |f| %>
+
+          <input type="text" name="user[email]" placeholder="Email" />
+          <input type="password" name="user[password]" placeholder="Password" />
+          <div class="remember-me">
+            <div class="pull-left">
+              <label class="checkbox">
+                <% if devise_mapping.rememberable? -%>
+                  <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+                <% end -%>
+              </label>
+            </div>
+            <div class="pull-right">
+              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                <%= link_to "Forgot password?", new_password_path(resource_name) %><br />
+              <% end -%>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <input type="submit" value="Signin" class="btn btn-primary btn-large">
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

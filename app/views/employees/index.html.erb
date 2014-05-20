@@ -1,0 +1,33 @@
+<h1>Employees</h1>
+
+<table id="employee-table">
+  <thead>
+    <tr>
+      <th>Name (Mobile)</th>
+      <th>Tracker</th>
+      <th>Edit/Destroy</th>
+    </tr>
+  </thead>
+<% @employees.each do |employee| %>
+  <tbody>
+    <tr>
+      <td><%= "#{employee.name} (#{employee.mobile_number})" %></td>
+      <td><%= link_to "Tracker", employee_employee_locations_path(employee) %></td>
+      <td><%= link_to 'Edit', edit_employee_path(employee) %>&nbsp;<%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  </tbody>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Employee', new_employee_path %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#employee-table').dataTable({
+      "iDisplayLength": 20
+    });
+  });
+</script>
